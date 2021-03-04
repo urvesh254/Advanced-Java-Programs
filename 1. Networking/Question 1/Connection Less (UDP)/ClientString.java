@@ -1,6 +1,7 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ClientString {
@@ -39,6 +40,7 @@ public class ClientString {
             DatagramPacket dp_total_digits = new DatagramPacket(rd, rd.length);
             ds.receive(dp_total_digits);
             String totalDigitString = new String(dp_total_digits.getData()).trim();
+            System.out.println(totalDigitString);
             int totalDigits = Integer.parseInt(totalDigitString);
 
             System.out.println("\nString : " + string);

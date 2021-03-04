@@ -23,7 +23,8 @@ public class ServerString {
 
             // Find the toatl characters in string and send to the client.
             int totalCharacters = string.length();
-            sd = Integer.toString(totalCharacters).getBytes();
+            // sd = Integer.toString(totalCharacters).getBytes();
+            sd = String.valueOf(totalCharacters).getBytes();
             DatagramPacket dp_total_characters = new DatagramPacket(sd, sd.length, address, SENDER_PORT);
             ds.send(dp_total_characters);
 
@@ -32,11 +33,11 @@ public class ServerString {
             for (int i = 0; i < string.length(); i++) {
                 char ch = string.charAt(i);
                 if (ch >= '0' && ch <= '9') {
-                    System.out.println(ch);
                     totalDigits++;
                 }
             }
-            sd = Integer.toString(totalDigits).getBytes();
+            // sd = Integer.toString(totalDigits).getBytes();
+            sd = String.valueOf(totalDigits).getBytes();
             DatagramPacket dp_total_digits = new DatagramPacket(sd, sd.length, address, SENDER_PORT);
             ds.send(dp_total_digits);
 

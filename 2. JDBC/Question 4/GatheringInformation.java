@@ -35,6 +35,8 @@ public class GatheringInformation {
 
         // Task 4 : Print only minors records.
         printOnlyMinors();
+
+        conn.close();
     }
 
     // Adding the personal info in personalinfo table.

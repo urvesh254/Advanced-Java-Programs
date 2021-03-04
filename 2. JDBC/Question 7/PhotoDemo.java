@@ -26,6 +26,8 @@ public class PhotoDemo {
 
         // Retrive photo from the database.
         retrivePhoto();
+
+        conn.close();
     }
 
     // Note : First you want to create table with name as varchar and photo as LongBlob datatype.

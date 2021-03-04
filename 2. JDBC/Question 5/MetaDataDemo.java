@@ -23,6 +23,8 @@ public class MetaDataDemo {
 
         // Task 2 : Print meta data of table.
         printMetaData();
+
+        conn.close();
     }
 
     // Note :- Here you can get data from any table you created before. I select student table.

@@ -146,22 +146,19 @@ public class GatheringInformation {
     }
 
     public static void printOnlyMinors() throws Exception {
-        String sqlQuery = "select * from personalinfo";
+        String sqlQuery = "SELECT * from personalinfo WHERE DATEDIFF(CURDATE(),birthdate) < 6570";
         Statement stmt = conn.createStatement();
 
         ResultSet rs = stmt.executeQuery(sqlQuery);
 
         System.out.println("\n\nPrinting only Minors Records: ");
-        int currentYear = LocalDate.now().getYear();
         String row;
         while (rs.next()) {
-            int birthdateYear = LocalDate.parse(rs.getString("birthdate")).getYear();
-            if (currentYear - birthdateYear < 18) {
-                row = String.format("Name = %s, birthdate = %s, sex = %s, address = %s, phone no = %s, email-id = %s",
-                        rs.getString("name"), rs.getString("birthdate"), rs.getString("sex"), rs.getString("address"),
-                        rs.getString("phoneNo"), rs.getString("emailID"));
-                System.out.println(row);
-            }
+            row = String.format("Name = %s, birthdate = %s, sex = %s, address = %s, phone no = %s, email-id = %s",
+                    rs.getString("name"), rs.getString("birthdate"), rs.getString("sex"), rs.getString("address"),
+                    rs.getString("phoneNo"), rs.getString("emailID"));
+            System.out.println(row);
         }
     }
+
 }

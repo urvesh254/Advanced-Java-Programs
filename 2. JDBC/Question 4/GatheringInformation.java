@@ -146,6 +146,9 @@ public class GatheringInformation {
     }
 
     public static void printOnlyMinors() throws Exception {
+        /* 
+            DATEDIFF(DATE,DATE) is a function of the sql which return the days between two dates.
+         */
         String sqlQuery = "SELECT * from personalinfo WHERE DATEDIFF(CURDATE(),birthdate) < 6570";
         Statement stmt = conn.createStatement();
 

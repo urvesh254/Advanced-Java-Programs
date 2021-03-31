@@ -2,18 +2,17 @@
 import javax.servlet.http.*;
 import javax.servlet.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Shopping extends HttpServlet
 {
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("username");
+        HttpSession session = request.getSession();
+
+        String username = session.getAttribute("username").toString();
         shoppingElements(out, username);
 
     }
@@ -27,12 +26,13 @@ public class Shopping extends HttpServlet
                 + "    </head>\n"
                 + "    <body>\n"
                 + "        <h1>Online Shopping</h1>\n"
+                + "        <h2>Welcome, " + username + "</h2>\n"
                 + "        <form action=\"ShoppingCart\" method=\"POST\">\n"
                 + "            <label for=\"iphone\">\n"
                 + "                <img src=\"iphone-12-pro-blue-hero.jpg\" width=250px alt=\"iPhone 12\" />\n"
                 + "                <br>iPhone 12 pro blue hero\n"
                 + "            </label>\n"
-                + "            <input type=\"checkbox\" id=\"iphone\" name=\"iphone12\">\n"
+                + "            <input type=\"checkbox\" id=\"iphone\" name=\"iphone\">\n"
                 + "\n"
                 + "            <br>\n"
                 + "            <br>\n"
@@ -62,14 +62,6 @@ public class Shopping extends HttpServlet
                 + "    </body>\n"
                 + "</html>\n"
                 + "";
-        try (BufferedReader br = new BufferedReader(new FileReader("shopping.html"))) {
-            String s;
-            while ((s = br.readLine()) != null) {
-                out.println(s);
-            }
-        }
-        catch (Exception e) {
-            out.println(e.getMessage());
-        }
+        out.println(shoppingHtml);
     }
 }

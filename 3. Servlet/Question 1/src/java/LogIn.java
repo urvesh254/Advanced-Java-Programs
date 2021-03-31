@@ -11,9 +11,10 @@ public class LogIn extends HttpServlet
         PrintWriter out = response.getWriter();
 
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("username", username);
 
-        response.sendRedirect("shopping.html");
-
+        response.sendRedirect("Shopping");
     }
 }
